@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
 	return "Spacy NLP API for LSB App"
 
-@app.route('/process',methods=["POST"])
+@app.route('/',methods=["POST"])
 def analyze():  
     try: 
         sentence = request.get_json(force=True)
