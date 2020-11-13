@@ -8,6 +8,14 @@ nlp = spacy.load('es_core_news_sm')
 
 app = Flask(__name__)
 
+
+def getDetails(string_tags):
+    tags={}
+    for tag in string_tags:
+        if len(tag.split("=")) >1:
+            tags[tag.split("=")[0]]=tag.split("=")[1]
+    return tags
+
 @app.route('/')
 def index():
 	return "Spacy NLP API for LSB App"
@@ -20,9 +28,9 @@ def analyze():
             doc = nlp(sentence["word"]) 
 
             tokens={"response":[]}
-            for token in doc:
+            for token in doc: 
                 string_tags=token.tag_.split("|") 
-                tags = [{tag.split("=")[0]:tag.split("=")[1]} for tag in string_tags if len(tag.split("=")) >1 ]
+                tags = getDetails(string_tags)
                 tokens["response"].append({"token":token.text,
                                 "lemma":token.lemma_,
                                 "pos":token.pos_,
