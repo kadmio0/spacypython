@@ -4,6 +4,7 @@ from spacy import displacy
 import es_core_news_sm
 
 nlp = spacy.load('es_core_news_sm')
+#nlp = spacy.load('es_core_news_md')
 
 app = Flask(__name__)
 
@@ -22,10 +23,10 @@ def analyze():
             for token in doc:
                 string_tags=token.tag_.split("|") 
                 tags = [{tag.split("=")[0]:tag.split("=")[1]} for tag in string_tags if len(tag.split("=")) >1 ]
-                tokens["response"].append({
+                tokens["response"].append({"token":token.text,
                                 "lemma":token.lemma_,
-                                "tag":token.pos_,
-                                "tags":tags,"token":token.text})
+                                "pos":token.pos_,
+                                "details":tags})
             return tokens 
         except KeyError:
             return {"error":"Invalid Parameters"} , 400
