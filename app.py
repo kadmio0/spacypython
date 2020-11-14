@@ -3,9 +3,9 @@ import spacy
 from spacy import displacy
 import es_core_news_sm
 
-nlp = spacy.load('es_core_news_sm')
+#nlp = spacy.load('es_core_news_sm')
 #nlp = spacy.load('es_core_news_md')
-
+nlp = spacy.load('es_core_news_lg')
 app = Flask(__name__)
 
 
