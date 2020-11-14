@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, render_template, url_for, request 
 import spacy
 from spacy import displacy
-import es_core_news_sm
+import es_core_news_md
 
 #nlp = spacy.load('es_core_news_sm')
 nlp = spacy.load('es_core_news_md')
